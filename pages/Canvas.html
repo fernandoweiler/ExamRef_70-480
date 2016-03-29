@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Canvas</title>
+  <style>
+    canvas {
+      border: 1px solid #cacada;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>
+        
+      </h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Table of Contents</a></li>
+        <li><a href="wiki.html">Wiki</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1>
+        Canvas
+      </h1>
+        <canvas id="drawing-surface" width="600" height="400">
+          Your browser does not support HTML5.
+        </canvas>
+        <canvas id="drawing-image" width="600" height="400">
+          Your browser does not support HTML5.
+        </canvas>
+    </article>
+    <article>
+      <h1>
+        SVG
+      </h1>
+      <svg>
+        <circle id="circle" cx="50" cy="50" r="50" fill="green" onmouseover="Red(evt)" onmouseout="Green(evt)">Your browser does not support HTML5.</circle>
+      </svg>
+    </article>
+  </main>
+  <footer>&lt; <a href="javascript:history.back();">go back</a></footer>
+  <script>
+    window.onload = function () {
+      var drawingSurface = document.getElementById("drawing-surface");
+      var drawingImage = document.getElementById("drawing-image");
+      var ctx = drawingSurface.getContext("2d");
+      var ctxt = drawingImage.getContext("2d");
+      
+      ctx.beginPath();
+      ctx.moveTo(13,13);
+      ctx.lineTo(125,350);
+      ctx.lineTo(255,369);
+      ctx.lineTo(550,369);
+      ctx.lineTo(569,10);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#0f0';
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(10,380);
+      ctx.quadraticCurveTo(300,-250,580,380);
+      ctx.lineWidth = 15;
+      ctx.strokeStyle = '#ff0';
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.arc(150,100,75,0,2 * Math.PI, false);
+      ctx.lineWidth = 25;
+      ctx.strokeStyle = '#00f';
+      
+      var gradient = ctx.createRadialGradient(200,200,5,250,250,100);
+      gradient.addColorStop(0,"blue");
+      gradient.addColorStop(0.5, "green");
+      gradient.addColorStop(1, "red");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.arc(450,100,75,1.5 * Math.PI, 2 * Math.PI, false);
+      ctx.lineWidth = 25;
+      ctx.strokeStyle = '#f00';
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.arc(150, 300, 75, 1 * Math.PI, 1.5 * Math.PI, false);
+      ctx.lineWidth = 25;
+      ctx.strokeStyle = '#0ff';
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.arc(450,300,75,.5 * Math.PI, 1 * Math.PI, false);
+      ctx.lineWidth = 25;
+      ctx.strokeStyle = '#0f0';
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(125,20);
+      ctx.bezierCurveTo(0,200,300,300,50,400);
+      ctx.lindeWidth = 10;
+      ctx.strokeStyle = '#f0f';
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.arc(300,200,75,1.75 * Math.PI, 1.25 * Math.PI, false);
+      ctx.lineTo(150,125);
+      ctx.quadraticCurveTo(300,0,450,125);
+      ctx.lineTo(353,144);
+      ctx.strokeStyle = "blue";
+      ctx.lineCap = "round";
+      ctx.lineWidth = 5;
+      gradient = ctx.createLinearGradient(300,0,450,125);
+      gradient.addColorStop(0,"red");
+      gradient.addColorStop(0.5, "green");
+      gradient.addColorStop(1, "blue");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.stroke();
+      
+      var x,y;
+      x = 150;
+      y = 75;
+      ctx.beginPath();
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 3;
+      ctx.fillStyle = '#cacada';
+      ctx.fillRect(300-(x/2),200-(y/2),x,y);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.lineWidth = 3;
+      ctx.rect(400,300,199,99);
+      
+      var img = new Image();
+      img.src = "../img/nic-cage.png";
+      img.onload = function () {
+        var pat = ctx.createPattern(img, "repeat");
+        ctx.fillStyle = pat;
+        ctx.fill();
+        ctx.stroke();
+      }
+      
+      var img2 = new Image();
+      img2.src = "../img/nic-cage-400.jpg";
+      img2.onload = function () {
+        ctxt.drawImage(img2,0,0,img2.width * .666,img2.height * .666);
+        ctxt.stroke();
+        ctxt.font = "24px Verdana";
+        ctxt.textAlign = "center";
+        ctxt.fillStyle = 'orange';
+        ctxt.fillText("1. Text with altered colored font centered.", drawingImage.width / 2, drawingImage.height / 2);
+      }
+    }
+    
+    function Red(e) {
+      var circle = e.target;
+      circle.setAttribute("style","fill:red");
+    }
+    function Green(e) {
+      var circle = e.target;
+      circle.setAttribute("style","fill:green");
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Audio and Video</title>
+    <style>
+    img:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>
+        
+      </h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Table of Contents</a></li>
+        <li><a href="wiki.html">Wiki</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1>
+        Audio and Video elements
+      </h1>
+      <section>
+        <h2>
+          Audio
+        </h2>
+          <figure>
+            <audio controls>
+              <source src="../audio/zelda.mp3" type="audio/mp3" />
+            </audio>
+          </figure>
+      </section>
+      <section>
+        <h2>
+          Video
+        </h2>
+        <figure>
+            <video id="sample-video" poster="../img/Nic-Cage-Ghost-Rider.jpg" height="300" width="400">
+              <source src="../vid/small.webm" type="video/webm" />
+              <source src="../vid/small.ogg" type="video/ogg" />
+              <source src="../vid/small.mp4" type="video/mp4" />
+              <source src="../vid/small.3gp" type="video/3gp" />
+              <object>
+                <p>
+                  Video is not supported by this browser.
+                </p>
+              </object>
+            </video>
+            <div>
+              <img id="rewind-video" src="../img/rew.png" onclick="back();" />
+              <img id="play-video" src="../img/play.png" onclick="play();" />
+              <img id="pause-video" src="../img/pause.png" onclick="pause();" />
+            </div>
+        </figure>
+      </section>
+    </article>
+  </main>
+  <footer>&lt; <a href="javascript:history.back();">go back</a></footer>
+  <script>
+    var video;
+    window.onload = function () {
+      video = document.getElementById("sample-video");
+    }
+    
+    function play() {
+      video.play();
+    }
+    
+    function pause() {
+      video.pause();
+    }
+    
+    function back() {
+      video.currentTime -= 10;
+    }
+  </script>
+</body>
+
+</html>
