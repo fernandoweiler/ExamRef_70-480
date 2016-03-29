@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>HTML source to work with the DOM - Ch01Pg24</title>
+</head>
+
+<body>
+  <div id="outerDiv">
+    <p class='mainPara'>Main Paragraph</p>
+    <ul>
+      <li>First List Item</li>
+      <li>Second List Item</li>
+      <li>Third List Item</li>
+      <li>Fourth List Item</li>
+    </ul>
+    <div id="innerDiv">
+      <p class='subPara' id='P1'>Paragraph 1</p>
+      <p class='subPara' id='P2'>Paragraph 2</p>
+      <p class='subPara' id='P3'>Paragraph 3</p>
+      <p class='subPara' id='P4'>Paragraph 4</p>
+    </div>
+    <table>
+      <tr>
+        <td>Row 1
+        </td>
+      </tr>
+      <tr>
+        <td>Row 2
+        </td>
+      </tr>
+      <tr>
+        <td>Row 3
+        </td>
+      </tr>
+      <tr>
+        <td>Row 4
+        </td>
+      </tr>
+      <tr>
+        <td>Row 5
+        </td>
+      </tr>
+    </table>
+    <input type="text" /><input type="submit" value="Submit" />
+  </div>
+  <footer>&lt; <a href="javascript:history.back();">go back</a></footer>
+  <script>
+    window.onload = function () {
+      var element = document.getElementById("outerDiv");
+      var paragraphs = document.getElementsByTagName("p");
+      paragraphs = document.getElementsByClassName("subPara");
+      paragraphs = document.querySelectorAll("p");
+      var outerDiv = document.querySelector("#outerDiv");
+      
+      //element = document.getElementById("innerDiv");
+      //element.parentNode.removeChild(element);
+      //var afterRemove = document.getElementById("innerDiv");
+      
+      var element = document.getElementById("outerDiv").appendChild(document.createElement("article"));
+      element.innerText = "My new appendChild <article> element.";
+      
+      element = document.getElementById("outerDiv").insertBefore(document.createElement("article"),document.getElementById("innerDiv"));
+      element.innerText = "My new insertBefore <article> element.";
+      
+      var inner = document.getElementById("innerDiv");
+      element = inner.insertBefore(document.createElement("article"),inner.firstChild);
+      element.innerText = "My new firstChild <article> element.";
+      
+      var p = inner.removeChild(document.getElementById("P1"));
+  
+      if (navigator.userAgent.indexOf('MSIE') != -1)
+        var detectIEregexp = /MSIE (\d+\.\d+);/
+      else 
+        var detectIEregexp = /Trident.*rv[ :]*(\d+\.\d+)/
+      
+      if (detectIEregexp.test(navigator.userAgent)) {
+        //inner.removeNode(true);
+          var newDiv = document.createElement("div");
+          for (var i = 0; i < inner.childNodes.length; i++) {
+            var anchor = newDiv.appendChild(document.createElement("a"));
+            anchor.setAttribute("href", "http://www.bing.de");
+            anchor.text = inner.childNodes[i].textContent;
+            newDiv.appendChild(document.createElement("br"));
+          }
+        inner.replaceNode(newDiv);
+      }
+    }
+  </script>
+</body>
+
+</html>
