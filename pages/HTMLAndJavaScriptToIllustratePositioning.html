@@ -3,7 +3,28 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Template</title>
+  <title>HTML and JavaScript to illustrate Positioning - Ch01Pg61</title>
+  <script>
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+    img {
+      height: 150px;
+      width: 225px;
+    }
+    table {
+      width: 100%;
+      height: 100%;
+      border: 1px solid black;
+    }
+    td {
+      vertical-align: top;
+    }
+    td.left {
+      width: 80%;
+    }
+  </script>
 </head>
 
 <body>
@@ -19,18 +40,39 @@
     </nav>
   </header>
   <main>
-    <article>
-      <h1>
-        
-      </h1>
-      <section>
-        <h2>
-          
-        </h2>
-      </section>
-    </article>
+    <table>
+      <tr>
+        <td class="left">
+          <img id="nic-cage" src="../img/nic-cage.png" />
+          <img id="nic-cage-2" src="../img/nic-cage.png" />
+        </td>
+        <td>
+          Left: <input type="text" id="leftText" /><br />
+          Top: <input type="text" id="topText" /><br />
+          Position:
+          <select id="positioning">
+            <option>relative</option>
+            <option>absolute</option>
+          </select><br />
+          <input type="button" id="btnPosition" value="Update" />
+        </td>
+      </tr>
+    </table>
   </main>
   <footer>&lt; <a href="javascript:history.back();">go back</a></footer>
+  <script>
+    window.onload = function () {
+      var top = document.getElementById('topText');
+      var left = document.getElementById('leftText');
+      var pos = document.getElementById('positioning');
+      document.getElementById('btnPosition').onclick = function () {
+        var img = document.getElementById('nic-cage-2');
+        img.style.position = pos.value;
+        img.style.left = left.value + 'px';
+        img.style.top = top.value + 'px';
+      }
+    }
+  </script>
 </body>
 
 </html>
